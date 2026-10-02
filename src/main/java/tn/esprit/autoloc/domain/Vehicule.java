@@ -5,6 +5,8 @@ import lombok.*;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -37,5 +39,16 @@ public class Vehicule {
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
 
+    @ManyToOne
+    Agence agence;
+
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL)
+    private Set<Maintenance> maintenances;
+
+    @OneToMany(mappedBy = "vehicule")
+    private Set<Reservation> reservations;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Equipement> equipements;
 
 }

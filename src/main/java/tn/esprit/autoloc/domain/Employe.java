@@ -15,6 +15,9 @@ public class Employe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmploye;
 
+    @ManyToOne
+    Agence agence;
+
     @Column(nullable = false, length = 50)
     private String nom;
 
